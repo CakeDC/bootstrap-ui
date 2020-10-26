@@ -12,7 +12,7 @@ class HtmlHelper extends \Cake\View\Helper\HtmlHelper
      * @param array $options Additional HTML attributes.
      * @return string HTML badge markup.
      */
-    public function badge($text, array $options = [])
+    public function badge($text, array $options = []): string
     {
         $options += ['tag' => 'span'];
         $tag = $options['tag'];
@@ -40,7 +40,7 @@ class HtmlHelper extends \Cake\View\Helper\HtmlHelper
      * @return string|null Breadcrumbs HTML list.
      * @link http://book.cakephp.org/3.0/en/views/helpers/html.html#creating-breadcrumb-trails-with-htmlhelper
      */
-    public function getCrumbList(array $options = [], $startText = false)
+    public function getCrumbList(array $options = [], $startText = false): ?string
     {
         $options += [
             'separator' => '',
@@ -56,7 +56,7 @@ class HtmlHelper extends \Cake\View\Helper\HtmlHelper
      * @param array $options Additional HTML attributes.
      * @return string HTML icon markup.
      */
-    public function icon($name, array $options = [])
+    public function icon($name, array $options = []): string
     {
         $options += [
             'tag' => 'i',
@@ -80,7 +80,7 @@ class HtmlHelper extends \Cake\View\Helper\HtmlHelper
      * @param array|string $options Additional HTML attributes.
      * @return string HTML icon markup.
      */
-    public function label($text, $options = [])
+    public function label($text, $options = []): string
     {
         if (is_string($options)) {
             $options = ['type' => $options];

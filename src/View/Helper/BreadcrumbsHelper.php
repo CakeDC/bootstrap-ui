@@ -29,7 +29,7 @@ class BreadcrumbsHelper extends CoreBreadcrumbsHelper
     /**
      * {@inheritDoc}
      */
-    public function render(array $attributes = [], array $separator = [])
+    public function render(array $attributes = [], array $separator = []): string
     {
         $attributes += $this->_defaultAttributes;
 

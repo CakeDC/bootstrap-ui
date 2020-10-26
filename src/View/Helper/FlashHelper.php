@@ -62,7 +62,7 @@ class FlashHelper extends Helper
      *   in session.
      * @throws \UnexpectedValueException If value for flash settings key is not an array.
      */
-    public function render($key = 'flash', array $options = [])
+    public function render($key = 'flash', array $options = []): ?string
     {
         if (!$this->request->getSession()->check("Flash.$key")) {
             return null;
@@ -111,7 +111,7 @@ class FlashHelper extends Helper
      *
      * @return array
      */
-    public function implementedEvents()
+    public function implementedEvents(): array
     {
         return [];
     }

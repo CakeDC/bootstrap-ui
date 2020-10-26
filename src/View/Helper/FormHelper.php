@@ -137,7 +137,7 @@ class FormHelper extends Helper
      * @param array $options An array of html attributes and options.
      * @return string An formatted opening FORM tag.
      */
-    public function create($model = null, array $options = [])
+    public function create($model = null, array $options = []): string
     {
         // @codeCoverageIgnoreStart
         if (isset($options['horizontal'])) {
@@ -173,7 +173,7 @@ class FormHelper extends Helper
      * @return string A HTML submit button
      * @link http://book.cakephp.org/3.0/en/views/helpers/form.html#creating-buttons-and-submit-elements
      */
-    public function submit($caption = null, array $options = [])
+    public function submit($caption = null, array $options = []): string
     {
         $options = $this->applyButtonClasses($options);
 
@@ -194,7 +194,7 @@ class FormHelper extends Helper
      * @return string Completed form widget.
      * @deprecated Use control() instead.
      */
-    public function input($fieldName, array $options = [])
+    public function input($fieldName, array $options = []): string
     {
         return $this->control($fieldName, $options);
     }
@@ -212,7 +212,7 @@ class FormHelper extends Helper
      * @param array $options Each type of input takes different options.
      * @return string Completed form widget.
      */
-    public function control($fieldName, array $options = [])
+    public function control($fieldName, array $options = []): string
     {
         $options += [
             'prepend' => null,
@@ -318,7 +318,7 @@ class FormHelper extends Helper
      *   into the hidden input elements generated for the Security Component.
      * @return string A closing FORM tag.
      */
-    public function end(array $secureAttributes = [])
+    public function end(array $secureAttributes = []): string
     {
         $this->_align = $this->_grid = null;
 
@@ -337,7 +337,7 @@ class FormHelper extends Helper
      * @param array $options Array of HTML attributes.
      * @return string An HTML text input element.
      */
-    public function staticControl($fieldName, array $options = [])
+    public function staticControl($fieldName, array $options = []): string
     {
         $options += [
             'escape' => true,
@@ -382,7 +382,7 @@ class FormHelper extends Helper
      * @param array $options The options for the input element.
      * @return string The generated input element.
      */
-    protected function _getInput($fieldName, $options)
+    protected function _getInput($fieldName, $options): string
     {
         unset($options['help']);
 
@@ -395,7 +395,7 @@ class FormHelper extends Helper
      * @param array $options The options for group template
      * @return string The generated group template
      */
-    protected function _groupTemplate($options)
+    protected function _groupTemplate($options): string
     {
         $groupTemplate = $options['options']['type'] . 'FormGroup';
         if (!$this->templater()->get($groupTemplate)) {
@@ -417,7 +417,7 @@ class FormHelper extends Helper
      * @param array $options The options for input container template.
      * @return string The generated input container template.
      */
-    protected function _inputContainerTemplate($options)
+    protected function _inputContainerTemplate($options): string
     {
         $inputContainerTemplate = $options['options']['type'] . 'Container' . $options['errorSuffix'];
         if (!$this->templater()->get($inputContainerTemplate)) {
@@ -441,7 +441,7 @@ class FormHelper extends Helper
      * @param array $options Options list.
      * @return array Options
      */
-    protected function _parseOptions($fieldName, $options)
+    protected function _parseOptions($fieldName, $options): array
     {
         $options = parent::_parseOptions($fieldName, $options);
         $options += ['id' => $this->_domId($fieldName)];
@@ -458,7 +458,7 @@ class FormHelper extends Helper
      * @param array $options Options.
      * @return array Modified options.
      */
-    protected function _formAlignment($options)
+    protected function _formAlignment($options): array
     {
         if (!$options['align']) {
             $options['align'] = $this->_detectFormAlignment($options);
@@ -518,7 +518,7 @@ class FormHelper extends Helper
      * @param bool $offset If true, will append `offset-` to the class.
      * @return string Classes.
      */
-    protected function _gridClass($position, $offset = false)
+    protected function _gridClass($position, $offset = false): string
     {
         $class = 'col-%s-';
         if ($offset) {
@@ -545,7 +545,7 @@ class FormHelper extends Helper
      * @param array $options Options.
      * @return string Form alignment type. One of `default`, `horizontal` or `inline`.
      */
-    protected function _detectFormAlignment($options)
+    protected function _detectFormAlignment($options): string
     {
         foreach (['horizontal', 'inline'] as $align) {
             if ($this->checkClasses('form-' . $align, $options)) {
