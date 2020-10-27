@@ -1649,7 +1649,13 @@ class FormHelperTest extends TestCase
         $this->assertContains('class="form-control"', $result);
 
         $result = $this->Form->dateTime('foo');
-        $this->assertContains('class="form-control"', $result);
+
+        $this->assertContains('<select name="foo[year]" class="form-control"', $result);
+        $this->assertContains('<select name="foo[month]" class="form-control"', $result);
+        $this->assertContains('<select name="foo[day]" class="form-control"', $result);
+        $this->assertContains('<select name="foo[hour]" class="form-control"', $result);
+        $this->assertContains('<select name="foo[minute]" class="form-control"', $result);
+        $this->assertContains('<select name="foo[second]" class="form-control"', $result);
 
         $result = $this->Form->file('foo');
         $this->assertNotContains('"form-control"', $result);

@@ -88,6 +88,7 @@ class FormHelper extends Helper
      */
     protected $_widgets = [
         'button' => 'BootstrapUI\View\Widget\ButtonWidget',
+        'datetime' => 'BootstrapUI\View\Widget\DateTimeSelectWidget',
         'radio' => ['BootstrapUI\View\Widget\RadioWidget', 'nestingLabel'],
         'select' => 'BootstrapUI\View\Widget\SelectBoxWidget',
         'textarea' => 'BootstrapUI\View\Widget\TextareaWidget',

@@ -38,7 +38,7 @@ trait InputgroupTrait
         $append = $data['append'];
         unset($data['append'], $data['prepend']);
 
-        $input = parent::render($data, $context);
+        $input = $this->_renderInput($data, $context);
 
         if ($prepend) {
             $prepend = $this->_addon($prepend, $data);
@@ -96,5 +96,15 @@ trait InputgroupTrait
     protected function _isButton($html)
     {
         return strpos($html, '<button') !== false || strpos($html, 'type="submit"') !== false;
+    }
+
+    /**
+     * @param array $data
+     * @param ContextInterface $context
+     * @return mixed
+     */
+    protected function _renderInput(array $data, ContextInterface $context)
+    {
+        return parent::render($data, $context);
     }
 }
