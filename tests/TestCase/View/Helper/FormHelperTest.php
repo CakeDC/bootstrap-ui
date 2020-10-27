@@ -4,7 +4,8 @@ namespace BootstrapUI\Test\TestCase\View\Helper;
 
 use BootstrapUI\View\Helper\FormHelper;
 use Cake\Core\Configure;
-use Cake\Http\ServerRequest as Request;
+use Cake\Http\ServerRequest;
+use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
@@ -16,7 +17,7 @@ class FormHelperTest extends TestCase
     /**
      * @var \Cake\View\View
      */
-    protected $View;
+    public $View;
 
     /**
      * @var FormHelper
@@ -26,9 +27,29 @@ class FormHelperTest extends TestCase
     /**
      * @var array
      */
-    protected $article;
+    public $article;
 
-    public function setUp()
+    /**
+     * @var array
+     */
+    public $dateRegex = [
+        'daysRegex' => 'preg:/(?:<option value="0?([\d]+)">\\1<\/option>[\r\n]*)*/',
+        'monthsRegex' => 'preg:/(?:<option value="[\d]+">[\w]+<\/option>[\r\n]*)*/',
+        'yearsRegex' => 'preg:/(?:<option value="([\d]+)">\\1<\/option>[\r\n]*)*/',
+        'hoursRegex' => 'preg:/(?:<option value="0?([\d]+)">\\1<\/option>[\r\n]*)*/',
+        'minutesRegex' => 'preg:/(?:<option value="([\d]+)">0?\\1<\/option>[\r\n]*)*/',
+        'secondsRegex' => 'preg:/(?:<option value="([\d]+)">0?\\1<\/option>[\r\n]*)*/',
+        'meridianRegex' => 'preg:/(?:<option value="(am|pm)">\\1<\/option>[\r\n]*)*/',
+    ];
+
+    protected $locale;
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -37,15 +58,22 @@ class FormHelperTest extends TestCase
         Configure::write('App.namespace', 'BootstrapUI\Test\TestCase\View\Helper');
         Configure::delete('Asset');
 
-        $request = new Request('articles/add');
+        $request = new ServerRequest([
+            'webroot' => '',
+            'base' => '',
+            'url' => '/articles/add',
+            'params' => [
+                'controller' => 'articles',
+                'action' => 'add',
+                'plugin' => null,
+            ],
+        ]);
         $this->View = new View($request);
 
         $this->Form = new FormHelper($this->View);
-        $request = $request->withAttribute('here', '/articles/add');
-        $request = $request->withParam('controller', 'articles');
-        $request = $request->withParam('action', 'add');
-        $request = $request->withAttribute('webroot', '');
-        $request = $request->withAttribute('base', '');
+
+        Router::reload();
+        Router::setRequest($request);
 
         $this->article = [
             'schema' => [
@@ -62,16 +90,25 @@ class FormHelperTest extends TestCase
             ],
         ];
 
-        Security::getSalt('foo!');
+        Security::setSalt('foo!');
         Router::connect('/:controller', ['action' => 'index']);
         Router::connect('/:controller/:action/*');
+
+        $this->locale = I18n::getLocale();
+        I18n::setLocale('eng');
     }
 
-    public function tearDown()
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Form, $this->View);
         TableRegistry::getTableLocator()->clear();
+        I18n::setLocale($this->locale);
     }
 
     public function testBasicTextInput()
