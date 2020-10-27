@@ -961,13 +961,6 @@ class FormHelperTest extends TestCase
                 'role' => 'form',
                 'action' => '/articles/add',
             ],
-            'div' => ['style' => 'display:none;'],
-            'input' => [
-                'type' => 'hidden',
-                'name' => '_method',
-                'value' => 'POST',
-            ],
-            '/div',
         ];
         $this->assertHtml($expected, $result);
     }
@@ -1005,14 +998,8 @@ class FormHelperTest extends TestCase
                 'action' => '/articles/add',
                 'class' => 'form-inline',
             ],
-            'div' => ['style' => 'display:none;'],
-            'input' => [
-                'type' => 'hidden',
-                'name' => '_method',
-                'value' => 'POST',
-            ],
-            '/div',
         ];
+
         $this->assertHtml($expected, $result);
     }
 
@@ -1027,13 +1014,6 @@ class FormHelperTest extends TestCase
                 'action' => '/articles/add',
                 'class' => 'form-horizontal',
             ],
-            'div' => ['style' => 'display:none;'],
-            'input' => [
-                'type' => 'hidden',
-                'name' => '_method',
-                'value' => 'POST',
-            ],
-            '/div',
         ];
         $this->assertHtml($expected, $result);
 
@@ -1051,6 +1031,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1109,6 +1092,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1137,13 +1123,6 @@ class FormHelperTest extends TestCase
                 'action' => '/articles/add',
                 'class' => 'form-horizontal',
             ],
-            'div' => ['style' => 'display:none;'],
-            'input' => [
-                'type' => 'hidden',
-                'name' => '_method',
-                'value' => 'POST',
-            ],
-            '/div',
         ];
         $this->assertHtml($expected, $result);
 
@@ -1161,6 +1140,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1395,6 +1377,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1444,7 +1429,10 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
-                'class' => 'form-control',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
+                'class' => 'error form-control',
                 'required' => 'required',
             ],
             ['div' => ['class' => 'help-block']],
@@ -1455,6 +1443,7 @@ class FormHelperTest extends TestCase
             '/div',
             '/div',
         ];
+
         $this->assertHtml($expected, $result);
 
         $result = $this->Form->control('title', [
@@ -1470,7 +1459,10 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
-                'class' => 'form-control',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
+                'class' => 'error form-control',
                 'required' => 'required',
             ],
             ['div' => ['class' => 'help-block']],
@@ -1499,6 +1491,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1554,7 +1549,10 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
-                'class' => 'form-control',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
+                'class' => 'error form-control',
                 'required' => 'required',
             ],
             ['div' => ['class' => 'help-block']],
@@ -1588,6 +1586,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
@@ -1616,6 +1617,9 @@ class FormHelperTest extends TestCase
                 'type' => 'text',
                 'name' => 'title',
                 'id' => 'title',
+                'data-validity-message' => 'This field cannot be left empty',
+                'oninvalid' => 'this.setCustomValidity(&#039;&#039;); if (!this.value) this.setCustomValidity(this.dataset.validityMessage)',
+                'oninput' => 'this.setCustomValidity(&#039;&#039;)',
                 'class' => 'form-control',
                 'required' => 'required',
             ],
