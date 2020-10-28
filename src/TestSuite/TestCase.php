@@ -12,7 +12,7 @@ class TestCase extends \Cake\TestSuite\TestCase
      * @param callable $callable callable function that will receive asserts
      * @return void
      */
-    public function deprecated($callable)
+    public function deprecated($callable): void
     {
         $errorLevel = error_reporting();
         error_reporting(E_ALL ^ E_USER_DEPRECATED);
