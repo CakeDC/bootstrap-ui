@@ -4,9 +4,8 @@ namespace BootstrapUI\Test\TestCase\View\Helper;
 
 use BootstrapUI\TestSuite\TestCase;
 use BootstrapUI\View\Helper\FlashHelper;
-use Cake\Core\Plugin;
 use Cake\Http\ServerRequest;
-use Cake\Network\Session;
+use Cake\Http\Session;
 use Cake\View\View;
 
 /**
@@ -35,48 +34,43 @@ class FlashHelperTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
+        $session = new Session();
+        $this->View = new View(new ServerRequest(['session' => $session]));
+        $this->Flash = new FlashHelper($this->View);
 
-        $this->deprecated(function () {
-            Plugin::load('BootstrapUI', ['path' => ROOT . DS]);
-            $this->session = new Session();
-        });
-
-        $this->View = new View(new ServerRequest(['session' => $this->session]));
-        $this->Flash = new FlashHelper($this->View, []);
-
-        $this->session->write([
+        $session->write([
             'Flash' => [
                 'flash' => [
                     'key' => 'flash',
                     'message' => 'This is a calling',
-                    'element' => 'Flash/default',
+                    'element' => 'flash/default',
                     'params' => [],
                 ],
                 'error' => [
                     'key' => 'error',
                     'message' => 'This is error',
-                    'element' => 'Flash/error',
+                    'element' => 'flash/error',
                     'params' => [],
                 ],
                 'custom1' => [
                     'key' => 'custom1',
                     'message' => 'This is custom1',
-                    'element' => 'Flash/warning',
+                    'element' => 'flash/warning',
                     'params' => [],
                 ],
                 'custom2' => [
                     'key' => 'custom2',
                     'message' => 'This is custom2',
-                    'element' => 'Flash/default',
+                    'element' => 'flash/default',
                     'params' => ['class' => 'foobar'],
                 ],
                 'custom3' => [
                     'key' => 'custom3',
                     'message' => 'This is <a href="#">custom3</a>',
-                    'element' => 'Flash/default',
+                    'element' => 'flash/default',
                     'params' => ['escape' => false],
                 ],
             ],
@@ -88,7 +82,7 @@ class FlashHelperTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->View, $this->Flash);
@@ -132,19 +126,19 @@ class FlashHelperTest extends TestCase
      */
     public function testRenderForMultipleMessages()
     {
-        $this->session->write([
+        $this->View->getRequest()->getSession()->write([
             'Flash' => [
                 'flash' => [
                     [
                         'key' => 'flash',
                         'message' => 'This is a calling',
-                        'element' => 'Flash/default',
+                        'element' => 'flash/default',
                         'params' => [],
                     ],
                     [
                         'key' => 'flash',
                         'message' => 'This is a second message',
-                        'element' => 'Flash/default',
+                        'element' => 'flash/default',
                         'params' => ['class' => ['extra']],
                     ],
                 ],
@@ -152,7 +146,7 @@ class FlashHelperTest extends TestCase
                     [
                         'key' => 'error',
                         'message' => 'This is error',
-                        'element' => 'Flash/error',
+                        'element' => 'flash/error',
                         'params' => [],
                     ],
                 ],

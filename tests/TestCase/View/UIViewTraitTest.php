@@ -19,7 +19,7 @@ class UIViewTraitTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -33,7 +33,7 @@ class UIViewTraitTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->View);
@@ -76,7 +76,7 @@ class UIViewTraitTest extends TestCase
         $cell = $this->View->cell('Articles');
 
         $this->deprecated(function () use ($cell) {
-            $this->assertEquals('display', $cell->template);
+            $this->assertEquals('display', $cell->viewBuilder()->getTemplate());
         });
         // 2016-03-28: used trim() to remove LF. assert was failing on Windows.
         $this->assertEquals("articles cell display", trim($cell));

@@ -62,7 +62,7 @@ Configure::write('App', [
     'cssBaseUrl' => 'css/',
     'paths' => [
         'plugins' => [dirname(APP) . DS . 'plugins' . DS],
-        'templates' => [APP . 'Template' . DS]
+        'templates' => [TEST_APP . 'templates' . DS]
     ]
 ]);
 
@@ -79,4 +79,9 @@ Cache::setConfig([
     ]
 ]);
 
-Security::setSalt('foobar');
+if (!getenv('db_dsn')) {
+    putenv('db_dsn=sqlite:///:memory:');
+}
+ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);
+
+Plugin::getCollection()->add(new \BootstrapUI\Plugin(['path' => ROOT . DS]));
