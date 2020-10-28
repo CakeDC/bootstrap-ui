@@ -9,5 +9,9 @@ BUTTON;
     $message = $button . $message;
 }
 
-echo $this->Html->div($class, $message, $params['attributes']);
+echo $this->Html->div(
+    implode(' ', (array)$class),
+    $message,
+    $params['attributes']
+);
 ?>
