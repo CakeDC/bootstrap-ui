@@ -49,7 +49,11 @@ class ButtonWidgetTest extends TestCase
         $button = new ButtonWidget($this->templates);
         $result = $button->render(['name' => 'my_input'], $this->context);
         $expected = [
-            'button' => ['type' => 'submit', 'name' => 'my_input', 'class' => 'btn btn-default'],
+            'button' => [
+                'name' => 'my_input',
+                'class' => 'btn btn-default',
+                'type' => 'submit',
+            ],
             '/button',
         ];
         $this->assertHtml($expected, $result);
@@ -119,6 +123,7 @@ class ButtonWidgetTest extends TestCase
         $button = new ButtonWidget($this->templates);
         $data = [
             'text' => 'Some <value>',
+            'escapeTitle' => false,
         ];
         $result = $button->render($data, $this->context);
         $expected = [
@@ -128,7 +133,7 @@ class ButtonWidgetTest extends TestCase
         ];
         $this->assertHtml($expected, $result);
 
-        $data['escape'] = true;
+        $data['escapeTitle'] = true;
         $result = $button->render($data, $this->context);
         $expected = [
             'button' => ['type' => 'submit', 'class' => 'btn btn-default'],
