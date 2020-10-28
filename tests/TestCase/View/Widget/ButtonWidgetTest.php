@@ -133,7 +133,7 @@ class ButtonWidgetTest extends TestCase
         ];
         $this->assertHtml($expected, $result);
 
-        $data['escapeTitle'] = true;
+        unset($data['escapeTitle']);
         $result = $button->render($data, $this->context);
         $expected = [
             'button' => ['type' => 'submit', 'class' => 'btn btn-default'],
