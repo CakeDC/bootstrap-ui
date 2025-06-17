@@ -16,12 +16,13 @@
         }
     ],
     "require": {
-        "cakephp/cakephp": "^3.5"
+        "php": ">=8.1",
+        "cakephp/cakephp": "^5.0"
     },
     "require-dev": {
-        "cakephp/chronos": "^1.1",
-        "cakephp/cakephp-codesniffer": "^3.1",
-        "phpunit/phpunit": "^5.7.14|^6.0"
+        "cakephp/chronos": "^3.0",
+        "cakephp/cakephp-codesniffer": "^5.0",
+        "phpunit/phpunit": "^10.0"
     },
     "support": {
         "issues": "https://github.com/friendsofcake/bootstrap-ui/issues",
@@ -49,5 +50,10 @@
             "@psalm"
         ],
         "test": "phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

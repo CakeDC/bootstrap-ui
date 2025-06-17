@@ -5,13 +5,14 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/friendsofcake/bootstrap-ui.svg?style=flat-square)](https://packagist.org/packages/friendsofcake/bootstrap-ui)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://packagist.org/packages/friendsofcake/bootstrap-ui)
 
-Transparently use [Bootstrap 3][twbs3] with [CakePHP 3][cakephp].
+Transparently use [Bootstrap 3][twbs3] with [CakePHP 5][cakephp].
 
 For version info see [version map](https://github.com/FriendsOfCake/bootstrap-ui/wiki#version-map).
 
 ## Requirements
 
-* CakePHP 3.x
+* PHP 8.1+
+* CakePHP 5.x
 * Bootstrap 3.x
 * jQuery 1.9+
 
@@ -47,7 +48,7 @@ use the trait `BootStrapUI\View\UIViewTrait`.
 ### AppView Setup
 
 For a quick setup, just make your `AppView` class extend `BootstrapUI\View\UIView`. The base class will handle
-the initializing and loading of the BootstrapUI `layout.ctp` for your app.
+the initializing and loading of the BootstrapUI `layout.php` for your app.
 
 The `src\View\AppView.php` will look something like the following:
 
@@ -98,9 +99,9 @@ class AppView extends View
 
 ## BootstrapUI Layout
 
-BootstrapUI comes with its own `layout.ctp` file and examples taken from the Bootstrap framework.
+BootstrapUI comes with its own `layout.php` file and examples taken from the Bootstrap framework.
 
-When no layout for the view is defined the `BootstrapUI\View\UIViewTrait` will load its own `layout.ctp` file. You can
+When no layout for the view is defined the `BootstrapUI\View\UIViewTrait` will load its own `layout.php` file. You can
 override this behavior in two ways.
 
 - Assign a layout to the view with `$this->setLayout('layout')`.
@@ -120,7 +121,7 @@ When using the BootstrapUI layout (or a copy of it), extra layout types (directl
 Bootstrap examples). You just need to copy them to your application's layouts directory:
 
 ```
-cp -R vendor/friendsofcake/bootstrap-ui/src/Template/Layout/examples src/Template/Layout/TwitterBootstrap
+cp -R vendor/friendsofcake/bootstrap-ui/templates/Layout/examples templates/Layout/TwitterBootstrap
 ```
 
 You can then simply extend them in your views like so:

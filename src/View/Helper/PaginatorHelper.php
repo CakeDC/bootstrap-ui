@@ -62,7 +62,7 @@ class PaginatorHelper extends \Cake\View\Helper\PaginatorHelper
      * @return string Numbers string.
      * @link http://book.cakephp.org/3.0/en/views/helpers/paginator.html#creating-page-number-links
      */
-    public function numbers(array $options = [])
+    public function numbers(array $options = []): string
     {
         $class = 'pagination';
 

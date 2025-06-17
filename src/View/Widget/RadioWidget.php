@@ -35,7 +35,7 @@ class RadioWidget extends \Cake\View\Widget\RadioWidget
      * @param \Cake\View\Form\ContextInterface $context The current form context.
      * @return string
      */
-    public function render(array $data, ContextInterface $context)
+    public function render(array $data, ContextInterface $context): string
     {
         $data += [
             'inline' => false,
@@ -59,7 +59,7 @@ class RadioWidget extends \Cake\View\Widget\RadioWidget
      * @param bool $escape Whether or not to HTML escape the label.
      * @return string Generated label.
      */
-    protected function _renderLabel($radio, $label, $input, $context, $escape)
+    protected function _renderLabel($radio, $label, $input, $context, $escape): string
     {
         if ($this->_inline) {
             $label = [

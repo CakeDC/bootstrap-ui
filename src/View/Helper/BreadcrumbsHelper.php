@@ -8,7 +8,7 @@ class BreadcrumbsHelper extends CoreBreadcrumbsHelper
     /**
      * @inheritdoc
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'templates' => [
             'wrapper' => '<ol{{attrs}}>{{content}}</ol>',
             'item' => '<li{{attrs}}><a href="{{url}}"{{innerAttrs}}>{{title}}</a></li>{{separator}}',
@@ -22,14 +22,14 @@ class BreadcrumbsHelper extends CoreBreadcrumbsHelper
      *
      * @var array
      */
-    protected $_defaultAttributes = [
+    protected array $_defaultAttributes = [
         'class' => 'breadcrumb',
     ];
 
     /**
      * {@inheritDoc}
      */
-    public function render(array $attributes = [], array $separator = [])
+    public function render(array $attributes = [], array $separator = []): string
     {
         $attributes += $this->_defaultAttributes;
 

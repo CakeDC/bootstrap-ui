@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BootstrapUI\View;
 
@@ -19,7 +20,7 @@ trait UIViewTrait
      *
      * @return void
      */
-    public function initializeUI(array $options = [])
+    public function initializeUI(array $options = []): void
     {
         if (
             (!isset($options['layout']) || $options['layout'] === true) &&
@@ -34,8 +35,6 @@ trait UIViewTrait
         $this->loadHelper('Form', ['className' => 'BootstrapUI.Form']);
         $this->loadHelper('Flash', ['className' => 'BootstrapUI.Flash']);
         $this->loadHelper('Paginator', ['className' => 'BootstrapUI.Paginator']);
-        if (class_exists('\Cake\View\Helper\BreadcrumbsHelper')) {
-            $this->loadHelper('Breadcrumbs', ['className' => 'BootstrapUI.Breadcrumbs']);
-        }
+        $this->loadHelper('Breadcrumbs', ['className' => 'BootstrapUI.Breadcrumbs']);
     }
 }

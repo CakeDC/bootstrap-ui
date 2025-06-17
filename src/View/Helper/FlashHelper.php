@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BootstrapUI\View\Helper;
 
@@ -17,9 +18,9 @@ class FlashHelper extends Helper
      * - class: List of classes to be applied to the div containing message
      * - attributes: Additional attributes for the div containing message
      *
-     * @var array
+     * @var array<string, mixed>
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'class' => ['alert', 'alert-dismissible', 'fade', 'in'],
         'attributes' => ['role' => 'alert'],
         'element' => 'BootstrapUI.Flash/default',
@@ -30,7 +31,7 @@ class FlashHelper extends Helper
      *
      * @var \Cake\Http\ServerRequest
      */
-    public $request;
+    protected $request;
 
     /**
      * Constructor
@@ -62,7 +63,7 @@ class FlashHelper extends Helper
      *   in session.
      * @throws \UnexpectedValueException If value for flash settings key is not an array.
      */
-    public function render($key = 'flash', array $options = [])
+    public function render(string $key = 'flash', array $options = []): ?string
     {
         if (!$this->request->getSession()->check("Flash.$key")) {
             return null;
@@ -109,9 +110,9 @@ class FlashHelper extends Helper
     /**
      * Event listeners.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function implementedEvents()
+    public function implementedEvents(): array
     {
         return [];
     }
